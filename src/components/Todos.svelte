@@ -1,17 +1,20 @@
 <script>
+    let task;
     let todo = [];
-    $:totalTodos = todo.length;
-    let completedTodos;
-    function addTodo(event){
-        console.log(event.target)
+    let totalTodos = todo.length;
+    let completedTodos = 0;
+    function addTodo(){
+        todo = [...todo,{task,completed:false}]
+        console.log(todo[0])
     }
 </script>
 
 <div class="todo">
     <h2>What are we doing today?</h2>
     <h3>You have completed {completedTodos} out of {totalTodos}</h3>
-    <form on:submit|preventDefault = {addTodo}>
-        <input type="text" placeholder="What are we doing today?">
+    <form on:submit={addTodo}>
+        <input type="text" placeholder="What are we doing today?"  bind:value = {task}>
         <button type="submit">Add Todo</button>
-    </form>
+    </form>    
+    <h2>{todo[0]}</h2>
 </div>
