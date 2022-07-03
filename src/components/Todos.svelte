@@ -1,10 +1,8 @@
 <script>
     let todoList = []
-    $:totalTodos = todoList.length;
-    let completedTodos = todoList.filter(e => e.completed).length;
     let newTodo;
     function addTodoItem(){
-        todoList = [...todoList,{task:newTodo,completed:false}]
+        todoList = [...todoList,{task:newTodo}]
     }
 </script>
 
@@ -28,14 +26,11 @@
       </button>
     </form>
   
-    <!-- TodosStatus -->
     {#each todoList as {task} }
       <div class="todo">
         <h3 class="task-text">{task}</h3>
         <button class="btn__danger">Remove Task</button>
       </div>
     {/each}
-
-    <h2 id="list-heading">{completedTodos} out of {totalTodos} items completed</h2>
-    </div>
+ </div>
   
