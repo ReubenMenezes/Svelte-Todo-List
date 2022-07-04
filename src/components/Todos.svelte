@@ -25,7 +25,6 @@
         Add
       </button>
     </form>
-  
     {#each todoList as {task} }
       <div class="todo">
         <h3 class="task-text">{task}</h3>
