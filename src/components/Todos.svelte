@@ -4,6 +4,11 @@
     function addTodoItem(){
         todoList = [...todoList,{task:newTodo}]
     }
+    function removeTodoItem(){
+      // Removes all todo items
+      todoList = todoList
+      todoList = []
+    }
 </script>
 
 <style>
@@ -28,7 +33,7 @@
     {#each todoList as {task} }
       <div class="todo">
         <h3 class="task-text">{task}</h3>
-        <button class="btn__danger">Remove Task</button>
+        <button class="btn__danger" on:click={removeTodoItem}>Remove Task</button>
       </div>
     {/each}
  </div>
