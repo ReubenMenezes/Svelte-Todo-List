@@ -1,13 +1,16 @@
 <script>
     let todoList = []
-    let newTodo;
+    let newTodo = " ";
     function addTodoItem(){
+      if(newTodo.trim().length === 0){
+        return
+      }
         todoList = [...todoList,{task:newTodo}]
+        newTodo = ""
     }
-    function removeTodoItem(){
-      // Removes all todo items
-      todoList = todoList
-      todoList = []
+    function removeTodoItem(index){
+      todoList.splice(index, 1)
+      todoList = [...todoList]
     }
 </script>
 
@@ -15,9 +18,7 @@
     @import "../global.css";
 </style>
 
-<!-- Todos.svelte -->
 <div class="todoapp stack-large">
-    <!-- NewTodo -->
     <form on:submit|preventDefault={addTodoItem}>
       <h2 class="label-wrapper">
         <label for="todo-0" class="label__lg">
@@ -30,10 +31,10 @@
         Add
       </button>
     </form>
-    {#each todoList as {task} }
+    {#each todoList as {task}, i }
       <div class="todo">
         <h3 class="task-text">{task}</h3>
-        <button class="btn__danger" on:click={removeTodoItem}>Remove Task</button>
+        <button class="btn__danger" on:click={() => removeTodoItem(i)}>Remove Task</button>
       </div>
     {/each}
  </div>
